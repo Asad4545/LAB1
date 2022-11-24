@@ -1,0 +1,163 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
+using System.Xml.Serialization;
+
+namespace LAB_1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] number = { -1, 5, 0, 9, 76,100, 98 };
+
+            Program obj = new Program();
+            Console.WriteLine("Which program do you want to run?");
+            Console.WriteLine("Press 1 for Task 1: ");
+            Console.WriteLine("Press 2 for Task 2:");
+            int c = Convert.ToInt32(Console.ReadLine());
+            switch (c)
+            {
+                case 1:
+
+            //obj.FindMin(number);
+            int x = obj.FindMax(number);
+            Console.WriteLine("Max:" + x);
+
+            int y = obj.FindMin(number);
+            Console.WriteLine("Min:" + y);
+
+            int z = obj.FindSum(number);
+            Console.WriteLine("Sum:" + z);
+
+            int a = obj.FindAverage(number);
+            Console.WriteLine("Average:" + a);
+                    break;
+
+                    case 2:
+
+                    Console.Write("Enter number of subjects ");
+                    int n = Convert.ToInt32(Console.ReadLine());
+
+
+
+                    List<string> subjects = obj.inputNames(n);
+
+                    List<int> markslist = obj.marks(subjects);
+
+                    obj.calculation(subjects, markslist);
+                    break;
+        
+            }
+            
+        }
+
+//TASK_1
+        int FindSum(int[] number)
+        {
+            int sum = 0;
+            for( int i = 0; i < number.Length; i++ )
+            {
+
+                sum = sum + number[i];
+                
+            }
+            return sum;
+        }
+        int FindAverage(int[] number)
+        {
+            int sum = 0;
+            int avg;
+            for (int i = 0; i < number.Length; i++)
+            {
+
+                sum = sum + number[i];
+
+            }
+            avg = sum / number.Length;
+            return avg;
+        }
+        int FindMax(int[] number)
+        {
+            
+            int max = number[0];
+            for (int i = 0; i < number.Length; i++)
+            {
+                if (number[i]> max)
+                {
+                    max = number[i];
+                }
+            }
+            return max;
+            
+        }
+        int FindMin(int[] number)
+        {
+            int min = number[0];
+            for (int i = 0; i < number.Length; i++)
+            {
+                if (number[i] < min)
+                {
+                    min = number[i];
+                }
+            }
+            return min;
+        }
+
+//TASK_2
+        public List<string> inputNames(int n)
+        {
+            List<string> Namelist = new List<string>();
+            for (int i = 1; i <= n; i++)
+            {
+                Console.Write("Enetr name:");
+                string names = Console.ReadLine();
+
+                Namelist.Add(names);
+
+            }
+            return Namelist;
+        }
+
+        public List<int> marks(List<string> Subject)
+        {
+            int length = Subject.Count;
+            List<int> markslist = new List<int>();
+            for (int i = 0; i < length; i++)
+            {
+                Console.Write($"Enetr marks of {Subject[i]}: ");
+                int marks = Convert.ToInt32(Console.ReadLine());
+
+                markslist.Add(marks);
+
+            }
+            return markslist;
+        }
+
+        public void calculation(List<string> subject, List<int> marks)
+        {
+            for (int i = 0; i < subject.Count; i++)
+            {
+                Console.Write("Marks of " + subject[i] + " is " + marks[i] + ":");
+
+                if (marks[i] >= 98)
+                {
+                    Console.WriteLine("Grade A ");
+                }
+                else if (marks[i] >= 50)
+                {
+                    Console.WriteLine("C grade ");
+                }
+                else
+                {
+                    Console.WriteLine("Fail ");
+                }
+            }
+        }
+
+    }
+            
+}
+
